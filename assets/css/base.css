@@ -1,0 +1,264 @@
+:root {
+    --white-color: white;
+    --black-color: black;
+    --text-color: #333;
+    --primary-color: #EE4D2D;
+    --border-color: #dbdbdb;
+    --star-gold-color: #FFCE3E;
+
+    --nav-height: 34px;
+    --header-height: 120px;
+    --header-with-search-height: calc(var(--header-height) - var(--nav-height));
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    /* FONT SIZE CHO CHỮU NÊN DÙNG REM */
+    /* mặc định 100% là 16px */
+    /* tips: 62.5% là 10px dễ tính hơn */
+
+    line-height: 1.6rem;
+    /* 1.6rem = 16px */
+    font-family: 'Roboto Slab', sans-serif;
+
+    /* border-box -> k tính margin */
+    box-sizing: border-box;
+    ;
+}
+
+/* ? RESPONSIVE */
+
+.grid {
+    /* tự giảm size theo màn hình */
+    width: 1600px;
+    max-width: 100%;
+    /* tự động că giữa */
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+/* nằm cùng trên 1 hàng ngang cuz main axis flexbox */
+.grid__row {
+    display: flex;
+    /* full hàng thì tự đẩy xg hàng dưới */
+    flex-wrap: wrap;
+
+    /* nguyên tắc 12 col grid - theo chuẩn khoảng cách trên pc thg là 24px */
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.grid__col-2 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 12.6667%;
+}
+
+.grid__col-10 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+}
+
+.grid__col-2-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+}
+
+/* ? MODAL */
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    animation: fadeIn linear 0.1s;
+}
+
+.modal__overlay {
+    position: absolute;
+    /* =100% thẻ cha chứa nó */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.modal__body {
+    --growth-from: 0.7;
+    --growth-to: 1;
+    background-color: var(--white-color);
+    margin: auto;
+    /* để nổi lên thì thêm z-index */
+    z-index: 1;
+    border-radius: 5px;
+    animation: growth linear 0.1s;
+}
+
+/* ? BUTTON STYLE */
+.btn {
+    min-width: 124px;
+    min-height: 36px;
+    text-decoration: none;
+    border-radius: 2px;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(---color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+}
+
+.btn.btn--normal:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.btn.btn--size-s {
+    height: 32px;
+    font-size: 1.2rem;
+    padding: 0 8px;
+
+}
+
+/* todo: yêu cầu cả 2 class cùng lúc có thì ms áp dụng */
+.btn.btn--primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+/* todo: nút vô hiệu hóa */
+.btn.btn--disable {
+    color: #ccc;
+    cursor: default;
+    background-color: #999;
+}
+
+/* ? SELECT INPUT */
+.select-input{
+    position: relative;
+    padding: 0 12px;
+    height: 34px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    min-width: 200px;
+    display: flex;
+    justify-content: space-between;
+/* căn giữa */
+    align-items: center;
+}
+.select-input__label{
+    font-size: 1.4rem;
+}
+.select-input__icon{
+    font-size: 1.4rem;
+    color: rgb(131, 131, 131);
+    position: relative;
+    top: 1px;
+}
+
+.select-input__list{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    padding: 8px 16px;
+    list-style: none;
+    display: none;
+}
+
+.select-input__link{
+    display: block;
+    padding: 4px 0;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.select-input__link:hover {
+    color: var(--primary-color);
+}
+
+.select-input:hover .select-input__list {
+    display: block;
+}
+
+
+/* ? Pagination */
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;    
+}
+.pagination-item{
+    margin: 0 10px;
+}
+.pagination-item__link{
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #939393;
+    min-width: 40px;
+    height: 30px;
+    border-radius: 2px;
+}
+.pagination-item--active .pagination-item__link {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.pagination-item--active .pagination-item__link:hover {
+    background-color: #ed5c3f;
+}
+/* ? ANIMATION  */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes turnOut {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* scale */
+@keyframes growth {
+    from {
+        transform: scale(var(--growth-from));
+    }
+
+    to {
+        transform: scale(var(--growth-to));
+    }
+}
